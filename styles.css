@@ -1,0 +1,102 @@
+body {
+    background-color: rgb(102, 102, 102);
+}
+.mainContainer {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex: 1;
+}
+.Score{
+    display: flex;
+    flex-direction: column;
+}
+
+.visible {
+    display: block;
+  }
+
+#reset{
+
+    display: none;
+    color: rgb(59, 34, 26);
+}
+
+
+.Score {
+    display: flex;
+    justify-content: center;  
+}
+
+h1 {
+
+    color: white;
+    text-align: center;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    background: linear-gradient(to right, #fbeee0, #fbeee0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+
+
+.startGame {
+    display: flex;
+    gap: 25px;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+h1 {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    padding-bottom: 70px;
+    color: aliceblue;
+    box-shadow: #fff;
+    
+}
+
+button {
+    background-color: #fbeee0;
+    border: 2px solid #422800;
+    border-radius: 30px;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #422800;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  button:hover {
+    background-color: #fff;
+  }
+  
+  button:active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+  }
+  
+  @media (min-width: 768px) {
+    button {
+      min-width: 120px;
+      padding: 0 25px;
+    }
+    }
+    
+    button:hover {
+      box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
+    }
+   
+      

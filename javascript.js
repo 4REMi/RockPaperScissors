@@ -1,3 +1,90 @@
+// Wait for the page to be fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Select the buttons
+    const rockButton = document.querySelector('#Rock');
+    const paperButton = document.querySelector('#Paper');
+    const scissorsButton = document.querySelector('#Scissors');
+    const scoreElement = document.querySelector('.Score');
+
+    
+    
+
+  
+// Add event listeners to the buttons
+rockButton.addEventListener('click', () => {
+
+    if (roundCount>=5){
+        document.querySelector('#reset').style.display = 'block';
+        var newHeader = document.createElement('h1');
+        newHeader.textContent = `${getWinner(playerWins,computerWins)} Wins!`;
+        scoreElement.appendChild(newHeader);
+        document.querySelector('#Rock').style.display = 'none';
+        document.querySelector('#Paper').style.display = 'none';
+        document.querySelector('#Scissors').style.display = 'none';
+  
+         
+    }
+    else {
+        let result = playRound('Rock', getComputerChoice());
+
+    // If the result is not undefined (i.e., if there was no tie),
+    // update the score
+    if (result !== undefined) {
+        console.log(roundCount);
+        scoreElement.innerHTML = `<h1>Player ${playerWins} Computer ${computerWins}</h1>`;
+    }
+        
+    }
+    
+})
+
+paperButton.addEventListener('click', () => {
+    if (roundCount>=5){
+        document.querySelector('#reset').style.display = 'block';
+        var newHeader = document.createElement('h1');
+        newHeader.textContent = `${getWinner(playerWins,computerWins)} Wins!`;
+        scoreElement.appendChild(newHeader);
+        document.querySelector('#Rock').style.display = 'none';
+        document.querySelector('#Paper').style.display = 'none';
+        document.querySelector('#Scissors').style.display = 'none';
+  
+         
+    } else {
+        let result = playRound('Paper', getComputerChoice());
+
+    if (result !== undefined) {
+        console.log(roundCount);
+        scoreElement.innerHTML = `<h1>Player ${playerWins} Computer ${computerWins}</h1>`;
+    }}
+
+});
+
+scissorsButton.addEventListener('click', () => {
+    if (roundCount>=5){
+        document.querySelector('#reset').style.display = 'block';
+        var newHeader = document.createElement('h1');
+        newHeader.textContent = `${getWinner(playerWins,computerWins)} Wins!`;
+        scoreElement.appendChild(newHeader);
+        document.querySelector('#Rock').style.display = 'none';
+        document.querySelector('#Paper').style.display = 'none';
+        document.querySelector('#Scissors').style.display = 'none';
+  
+         
+    } else {
+        let result = playRound('Scissors', getComputerChoice());
+
+        // If the result is not undefined (i.e., if there was no tie),
+        // update the score
+        if (result !== undefined) {
+            console.log(roundCount);
+            scoreElement.innerHTML = `<h1>Player ${playerWins} Computer ${computerWins}</h1>`;
+        }
+
+    }
+
+});
+});
+
 
 
 
@@ -6,97 +93,116 @@ function getComputerChoice() { //Randomizer computer's selection, we declare the
         return computerChoice;
 }
 
-function getplayerSelection(){
-    var playerChoice;
-    playerChoice = prompt("Type your choice (1=Rock 2=Paper 3=Scissors)"  );
-    
-    while (playerChoice>3 || playerChoice<0 ){
-        playerChoice = prompt("Invalid choice, please type a number between 1-3 (1=Rock 2=Paper 3=Scissors)"  );
-    }
-    playerChoice = Math.round(playerChoice-1);
-    playerChoice = options[playerChoice]; 
-    return playerChoice;
-}
+
 
 function playRound(playerChoice, computerChoice) {
 
+
+
+    // Check if the player's choice and the computer's choice are the same
+    if (playerChoice === computerChoice) {
+        // Update the <h1> element in the <div> with the class "Score"
+        // to display the "Tie!" header
+        document.querySelector('.Score').innerHTML = `<h1>Tie!</h1>`;
+
+        // Return early from the function to avoid updating the playerWins and
+        // computerWins variables
+        return;
+    }
+
+
     if (playerChoice =="Rock" && computerChoice =="Paper"){//Player chooses Rock
-        console.log("Player: " +playerChoice, " Computer: "+computerChoice);
-        console.log("Paper beats rock!");
-        console.log("Computer wins!");
-        computerWins++;
+
+        playerWins++;
+        roundCount++;
+        return playerWins, roundCount;
     }
 
     if (playerChoice =="Rock"&& computerChoice =="Scissors"){
-        console.log("Player: " +playerChoice, " Computer: "+computerChoice);
-        console.log("Rock beats scissors!");
-        console.log("Player wins!");
-        playerWins++;
+
+        computerWins++;
+        roundCount++;
+        return playerWins, roundCount;
     }
 
     if (playerChoice =="Rock"& computerChoice =="Rock"){
-        console.log("Player: " +playerChoice, " Computer: "+computerChoice);
-        console.log("Rock and rock is a tie");
-        console.log("No winner");
+        
+        roundCount++;
+        return playerWins, roundCount;
+
     }
     
 /////
 
     if (playerChoice =="Scissors"&& computerChoice =="Paper"){//Player Chooses Scissor
-        console.log("Player: " +playerChoice, " Computer: "+computerChoice);
-        console.log("Scissors beats paper!");
-        console.log("Player wins!");
+
         playerWins++;
+        roundCount++;
+        return playerWins, roundCount;
     }
 
     if (playerChoice =="Scissors"&& computerChoice =="Scissors"){
-        console.log("Player: " +playerChoice, " Computer: "+computerChoice);
-        console.log("Scissors and scissors is a tie");
-        console.log("No winner");
+        roundCount++;
+        return playerWins, roundCount;
+
     }
 
     if (playerChoice =="Scissors"& computerChoice =="Rock"){
-        console.log("Player: " +playerChoice, " Computer: "+computerChoice);
-        console.log("Rock beats scissors");
-        console.log("Computer wins!");
+
         computerWins++;
+        roundCount++;
+        return playerWins, roundCount;
     }
 
 /////
 
     if (playerChoice =="Paper"&& computerChoice =="Paper"){//Player Chooses paper
-        console.log("Player: " +playerChoice, " Computer: "+computerChoice);
-        console.log("Paper and paper is a tie");
-        console.log("No winner");
+        roundCount++;
+        return playerWins, roundCount;
+
     }
 
     if (playerChoice =="Paper"&& computerChoice =="Scissors"){
-        console.log("Player: " +playerChoice, " Computer: "+computerChoice);
-        console.log("Scissors beats paper!");
-        console.log("Computer wins!");
         computerWins++;
+        roundCount++;
+        return playerWins, roundCount;
     }
 
     if (playerChoice =="Paper"& computerChoice =="Rock"){
-        console.log("Player: " +playerChoice, " Computer: "+computerChoice);
-        console.log("Paper beats rock!");
-        console.log("Player wins!");
         playerWins++;
+        roundCount++;
+        return playerWins, roundCount;
     }
+    
     
   }
 
-  function game (){
 
-    for (let i = 0; i < 5; i++) {
-        
-       var a = getplayerSelection();
-       var b = getComputerChoice();
-        playRound(a,b);
-     }
-     
-     
+  function resetGame (){
+    let scoreElement = document.querySelector('.Score');
+    document.querySelector('#Rock').style.display = 'block';
+    document.querySelector('#Paper').style.display = 'block';
+    document.querySelector('#Scissors').style.display = 'block';
+    computerWins = 0;
+    playerWins = 0;
+    roundCount = 0;
+    scoreElement.innerHTML = `<h1>Player ${playerWins} Computer ${computerWins}</h1>`;
+    document.querySelector('#reset').style.display = 'none';
   }
+
+  function getWinner (playerWins,computerWins){
+    var winner = "";
+   
+    if (playerWins>computerWins){
+        winner = "Player";
+        return winner;
+    }
+    else {
+        winner = "Computer";
+        return winner;
+    }
+  }
+      
   var options = [
     'Rock',
     'Paper',
@@ -104,18 +210,12 @@ function playRound(playerChoice, computerChoice) {
     ]
 
     var computerWins = 0;
-    var playerWins = 0
+    var playerWins = 0;
+    var roundCount = 0;
 
-    game();
-    if (computerWins>playerWins){
-        console.log("Computer won best out of five.");
-     }
-     if (playerWins>computerWins){
-        console.log("Player won best out of five.");
-     }
-     if (playerWins==computerWins){
-        console.log("Tie! There's no winner");
-     }
 
-     console.log("Computer Wins:" +computerWins +"  Player Wins:" +playerWins);
-   
+
+
+ 
+    
+     
